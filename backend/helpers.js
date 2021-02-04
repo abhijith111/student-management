@@ -13,9 +13,7 @@ let helpers = {
             studentModel.create(studentObject, (err) => {
                 if (err) {
                     resolve({ studentRegistrationStatus: false });
-                    // console.log("error happend in create student model(*&)*(&^(*#%(&*#^)(*&#)(^($&",err,"err ended(*&$*(&^(*#&^$(*#&$^)(*&$)(#^$&");
                 } else {
-                    // console.log("student registration success");
                     resolve({ studentRegistrationStatus: true });
                 }
             });
