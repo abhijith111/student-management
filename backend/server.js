@@ -1,10 +1,12 @@
 import express, { response } from "express";
 import cors from "cors";
 import helpers from "./helpers.js";
+import mongoConnect from './dbConnection.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+mongoConnect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
@@ -29,14 +31,19 @@ app.get("/search-student", (req, res) => {
     });
 });
 app.post("/update-student", (req, res) => {
-    console.log(req.body,"inside update-student");
-    helpers.updateStudent(req.body).then((response)=>{
-        console.log(response,"after updateStudent function");
-        res.json({update: 'success'})
-    })
+    helpers.updateStudent(req.body).then((response) => {
+        res.json(response);
+    });
 });
 
 //admin-routing->
+// helpers.doAdminSignup() -> created for admin signup, no other interfaces for adding admin, may be say as a super admin, create admin panel in future
+
+app.get("/admin-login", (req, res) => {
+    helpers.doAdminLogin(req.body).then((response) => {
+        res.json(response);
+    });
+});
 app.post("/admin/add-class", (req, res) => {
     console.log(req.body, "add-class api call");
     helpers.addClass(req.body).then((response) => {

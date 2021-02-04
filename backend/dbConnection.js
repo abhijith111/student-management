@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-let conn = () => {
+let mongoConnect = () => {
     mongoose.connect(
         "mongodb+srv://adminAbhijith:oqHXYcznxGACtPSC@cluster0.bpv2s.mongodb.net/school?retryWrites=true&w=majority",
         {
@@ -20,4 +20,4 @@ let conn = () => {
         });
 };
 
-export default conn;
+export default mongoConnect;
